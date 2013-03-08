@@ -19,4 +19,21 @@ class Stock < ActiveRecord::Base
   def position
     self.price * self.quantity
   end
+
+  before_save :buy_stock
+  private
+
+  def buy_stock
+    begin
+      quote = YahooFinance::get_quotes(YahooFinance::StandardQuote, self.symbol)[self.symbol]
+    rescue
+      puts "Oh oh. Yahoo is out to lunch"
+    end
+
+    if quote.present?
+      self.symbol = quote.symbol
+      self.price = quote.lastTrade
+      self.name = quote.name
+    end
+  end
 end

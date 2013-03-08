@@ -1,0 +1,11 @@
+.row
+  .large-5.columns
+    = form_for @stock, :remote => true do |f|
+      = f.label :symbol
+      = f.text_field :symbol, :autofocus => true
+      = f.label :quantity
+      = f.text_field :quantity
+      %br
+      = f.submit 'Buy Stock', :class => 'button radius success' , :id => 'buy_stock_button'
+      = f.submit 'Cancel', :class => 'button alert radius' , :id => 'close_stock_form_button'
+  .large-7.columns
