@@ -12,3 +12,8 @@ function close_buy_stock_form()
 {
   $('#new_stock').hide();
 }
+
+function hide_buy_stock_button()
+{
+  $('#show_new_stock_button').hide();
+}

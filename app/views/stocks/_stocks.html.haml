@@ -1,0 +1,11 @@
+%script
+  var quotes = [];
+#check_boxes
+  = form_tag
+  - @stocks.each do |stock|
+    .check_boxes
+      = label_tag stock.symbol
+      = check_box_tag stock.symbol
+      %script
+        = "quotes.push({name:'#{stock.name}', symbol:'#{stock.symbol}', price:#{stock.price}})"
+.clear

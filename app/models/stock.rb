@@ -17,19 +17,22 @@ class Stock < ActiveRecord::Base
   belongs_to  :user, :inverse_of =>:stocks
 
   def position
-    self.price * self.quantity
+    get_quote.lastTrade * self.quantity
+  end
+
+  def get_quote
+    begin
+      YahooFinance::get_quotes(YahooFinance::StandardQuote, self.symbol)[self.symbol]
+    rescue
+      puts "no good"
+    end
   end
 
   before_save :buy_stock
   private
 
   def buy_stock
-    begin
-      quote = YahooFinance::get_quotes(YahooFinance::StandardQuote, self.symbol)[self.symbol]
-    rescue
-      puts "Oh oh. Yahoo is out to lunch"
-    end
-
+    quote = get_quote
     if quote.present?
       self.symbol = quote.symbol
       self.price = quote.lastTrade

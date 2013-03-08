@@ -1,3 +1,6 @@
-= link_to('Buy Stock', new_stock_path, :remote=> true, :class => 'button radius success')
+#buy_stock_button
+  = link_to('Buy Stock', new_stock_path, :remote=> true, :class => 'button radius success', :id => 'show_new_stock_button')
 
 #new_stock
+
+= render(:partial => 'stocks')

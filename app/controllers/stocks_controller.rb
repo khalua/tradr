@@ -12,5 +12,9 @@ class StocksController < ApplicationController
     @auth.stocks << @stock
   end
 
+  def get_quote
+
+  end
+
 
 end
