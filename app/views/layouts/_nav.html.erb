@@ -1,0 +1,15 @@
+<!-- Navigation -->
+
+      <ul class="button-group round small">
+        <li><a href="/" class="button">Home</a></li>
+        <li><%= link_to('Users', users_path, :class => 'button') %></li>
+
+        <% if @auth.present? %>
+          <li><%= link_to('Stocks', stocks_path, :class => 'button') %></li>
+          <li><%= link_to('Logout', login_path, :method => :delete, :confirm => 'Going to workout?', :class => 'button') %></li>
+        <% else %>
+          <li><%= link_to("Log in", login_path, :class => 'button') %></li>
+          <li><%= link_to("Create Account", new_user_path, :class => 'button') %></li>
+        <% end %>
+      </ul>
+<!-- End Navigation -->

@@ -1,0 +1,17 @@
+.row
+  .large-5.columns
+    = form_for @user, :remote => true do |f|
+      = f.label :name
+      = f.text_field :name, :autofocus => true
+      = f.label :email
+      = f.text_field :email
+      = f.label :password
+      = f.password_field :password
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+      = f.label :balance, 'Opening balance'
+      = f.text_field :balance
+      %br
+      = f.submit :class => 'button radius' , :id => 'create_user_button' #nil has to be there for the text to change
+      = f.submit 'Cancel', :class => 'button alert radius' , :id => 'close_user_form_button'
+  .large-7.columns

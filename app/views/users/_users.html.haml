@@ -1,0 +1,15 @@
+#users_table
+  %table
+    %theader
+      %tr
+        %th Name
+        %th Cash
+        %th Positions
+        %th Total
+    %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= number_to_currency(user.balance)
+        %td= number_to_currency(user.positions_total)
+        %td= number_to_currency(user.balance + user.positions_total )
