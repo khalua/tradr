@@ -4,6 +4,7 @@ $(function() {
   $('.box').click(show_graph);
 });
 
+// forms for stocks and users
 function close_new_user_form()
 {
   $('#new_user').hide();
@@ -19,26 +20,30 @@ function hide_buy_stock_button()
   $('#show_new_stock_button').hide();
 }
 
-function show_graph ()
+// let's get some graph shit on!
+function show_graph()
 {
-  var symbol = $(this).children().attr('name');
+  symbol = $(this).children().attr('name');
   console.log(symbol);
-  get_data();
+  get_data(symbol);
 
 }
 
-funtion get_data()
+function get_data(symbol)
 {
-
-  var id = $(this).parent().siblings('.clear').prev().text();
-  var token = $('input[name=authenticity_token]').val();
 
   $.ajax({
     dataType: 'json',
-    type: "post",
-    url: "/priorities/" + id + "/up",
-    data: {authenticity_token:token}
-  }).done(process_priority);
+    type: "get",
+    url: "/stocks/quote/" + symbol
+  }).done(process_quote);
+
+return false;
+
 }
 
+function process_quote(quote)
+{
+
+  console.log(quote);
 }

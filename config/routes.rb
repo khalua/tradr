@@ -5,7 +5,7 @@ R20130308Tradr::Application.routes.draw do
   resources :users, :only => [:edit, :new, :create, :index]
   resources :stocks do
     collection do
-      get '/get_quote'
+      get 'quote/:symbol', :action => 'quote'
     end
   end
 

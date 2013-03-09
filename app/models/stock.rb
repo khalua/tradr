@@ -15,6 +15,7 @@
 class Stock < ActiveRecord::Base
   attr_accessible :name, :symbol, :user_id, :quantity, :price
   belongs_to  :user, :inverse_of =>:stocks
+  validates :quantity, :presence => true
 
   def position
     get_quote.lastTrade * self.quantity
@@ -29,8 +30,8 @@ class Stock < ActiveRecord::Base
   end
 
   before_save :buy_stock
-  private
 
+  private
   def buy_stock
     quote = get_quote
     if quote.present?

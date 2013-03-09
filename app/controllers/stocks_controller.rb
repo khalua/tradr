@@ -12,8 +12,13 @@ class StocksController < ApplicationController
     @auth.stocks << @stock
   end
 
-  def get_quote
-
+  def quote
+    #symbol = Stock.get_quote(params[:symbol])
+    symbol = Stock.where(:symbol => params[:symbol]).first
+    lastTrade = symbol.get_quote.lastTrade
+    render :json => {symbol: symbol.symbol, lastTrade:lastTrade, name: symbol.name}
+    # symbol = Hash.new()
+    # render :json => [symbol]
   end
 
 
